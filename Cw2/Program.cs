@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 using System.Xml.Serialization;
 
 namespace Cw2
@@ -21,7 +22,7 @@ namespace Cw2
             {
                 CSVPath = @"D:\Users\User\Desktop\Cw2\Cw2\dane.csv";
                 DestPath = @"D:\Users\User\Desktop\Cw2\Cw2\result.xml";
-                Format = "xml";                
+                Format = "XML";                
             }
 
             var lines = File.ReadLines(CSVPath);
@@ -34,12 +35,7 @@ namespace Cw2
             {
                 var tmp = line.Split(",");
 
-                Course course = new Course { name = tmp[2] };
-
-                if(!studiesList.Contains(course))
-                    studiesList.Add(course);
-
-                studiesList[studiesList.IndexOf(course)].numberOfStudents++;
+                Course course = new Course { name = tmp[2] , numberOfStudents = 0};              
                
                 var tmpStudent = new Student
                 {
@@ -52,9 +48,12 @@ namespace Cw2
                     mothersName = tmp[7],
                     fathersName = tmp[8]
                 };
-                if (!set.Add(tmpStudent))
+                if (set.Add(tmpStudent))
                 {
-                    //nothing at the moment
+                    if (!studiesList.Contains(course))
+                        studiesList.Add(course);
+
+                    studiesList[studiesList.IndexOf(course)].numberOfStudents++;
                 }
 
             }
@@ -65,10 +64,19 @@ namespace Cw2
                 studenci = set,
                 activeStudies = studiesList
             };
-
-            FileStream writer = new FileStream(DestPath, FileMode.Create);
-            XmlSerializer serializer = new XmlSerializer(typeof(Uczelnia));          
-            serializer.Serialize(writer, raport);            
+                                    
+            switch (Format)
+            {
+                case "XML":
+                    FileStream writer = new FileStream(DestPath, FileMode.Create);
+                    XmlSerializer serializer = new XmlSerializer(typeof(Uczelnia));
+                    serializer.Serialize(writer, raport);
+                    break;
+                case "JSON":                 
+                    File.WriteAllText(DestPath, JsonSerializer.Serialize(raport));
+                    break;
+            }
+                     
         }
     }
 }
