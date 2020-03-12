@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Cw2
 {
-    class Uczelnia
+    public class Uczelnia
     {
-        string createdAt;
-        string author;
-        HashSet<Student> studenci;
-        HashSet<Course> activeStudies;
+        public string createdAt;
+        public string author;
+        public HashSet<Student> studenci;
+        public List<Course> activeStudies;
     }
 }

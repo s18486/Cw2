@@ -4,16 +4,16 @@ using System.Text;
 
 namespace Cw2
 {
-    class Student
+    public class Student
     {
-        public string indexNumber { get; set; }
-        public string fname { get; set; }
-        public string lname { get; set; }
-        public string birthdate { get; set; }
-        public string email { get; set; }
-        public string mothersName { get; set; }
-        public string fathersName { get; set; }
-        public Course studies { get; set; }
+        public string indexNumber;
+        public string fname;
+        public string lname;
+        public string birthdate;
+        public string email;
+        public string mothersName;
+        public string fathersName;
+        public StCourse studies;
 
     }
 }
