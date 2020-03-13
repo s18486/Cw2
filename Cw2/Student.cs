@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace Cw2
 {
     [Serializable]
     public class Student
-    {
-        [JsonPropertyName("indexNumber")]
+    {        
         [XmlAttribute(AttributeName = "indexNumber")]
         public string indexNumber { get; set; }      
         public string fname { get; set; }

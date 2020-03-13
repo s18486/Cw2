@@ -72,11 +72,15 @@ namespace Cw2
                     XmlSerializer serializer = new XmlSerializer(typeof(Uczelnia));
                     serializer.Serialize(writer, raport);
                     break;
-                case "JSON":                 
-                    File.WriteAllText(DestPath, JsonSerializer.Serialize(raport));
+                case "JSON":
+                    JsonSerializerOptions tmpOp = new JsonSerializerOptions();
+                    tmpOp.WriteIndented = true;
+                    var tmpWrapper = new {
+                        uczelnia = raport
+                    };
+                    File.WriteAllText(DestPath, JsonSerializer.Serialize(tmpWrapper,tmpOp));
                     break;
             }
-                     
         }
     }
 }

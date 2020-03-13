@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Uczelnia xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" createdAt="12.03.2020" author="Artur Ostapuk">
+<Uczelnia xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" createdAt="13.03.2020" author="Artur Ostapuk">
   <studenci>
     <Student indexNumber="s459">
       <fname>Paweł</fname>
